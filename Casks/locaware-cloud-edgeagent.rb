@@ -1,6 +1,6 @@
 cask "locaware-cloud-edgeagent" do
-  version "0.3.9"
-  sha256 "94ca1e5808da8c49023984647413a7bc0bfe935222397139b3d08cc70506f46b"
+  version "0.3.10"
+  sha256 "b50eb6c3c03aa897cbb6829d274fbe23aa8d30818c0c5fe880de70c7f4e04205"
 
   url "https://sdk.infsoft.com/macos/LocAware.Cloud.EdgeAgent.#{version}.dmg"
   name "LocAware Cloud Edge Agent"
