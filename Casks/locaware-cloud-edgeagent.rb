@@ -1,9 +1,9 @@
 cask "locaware-cloud-edgeagent" do
-  version "0.3.10"
-  sha256 "b50eb6c3c03aa897cbb6829d274fbe23aa8d30818c0c5fe880de70c7f4e04205"
+  version "0.3.11"
+  sha256 "ef8186ad5962742c4ef3d16a0eb9f34e966d496843c1e5b48b227d6262a3fc6b"
 
   url "https://sdk.infsoft.com/macos/LocAware.Cloud.EdgeAgent.#{version}.dmg"
-  name "LocAware Cloud Edge Agent"
+  name "LocAware Cloud - EdgeAgent"
   desc "Gives LocAware Cloud this computer's Bluetooth and infsoft positioning"
   homepage "https://locaware.cloud/"
 
@@ -11,7 +11,7 @@ cask "locaware-cloud-edgeagent" do
   auto_updates true
   depends_on macos: :sequoia
 
-  app "LocAware.Cloud.EdgeAgent.app"
+  app "LocAware Cloud - EdgeAgent.app"
 
   uninstall quit: "com.infsoft.locaware.edgeagent"
 
