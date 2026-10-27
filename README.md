@@ -27,7 +27,10 @@ brew install --cask infsoft-org/tap/locaware-cloud-edgeagent
 
 ## About this repository
 
-infsoft's release pipelines write these files - please do not edit them by hand. For questions, contact infsoft support.
+The casks in `Casks/` are written by the workflow "Update casks" (`.github/workflows/update-casks.yml`) - please do not
+edit them by hand. Every hour it reads the manifest each app's release publishes next to its download, checks the
+download against the manifest's sha256 and renders the cask from its template in `.github/cask-templates/`. A new app
+is a template whose first line names its manifest (`# manifest: <url>`). For questions, contact infsoft support.
 
 ## License
 

@@ -1,0 +1,41 @@
+# Keeps Casks/ at the newest release of every app: each template in .github/cask-templates names the manifest its
+# release pipeline publishes (.github/scripts/update-casks.sh). Nothing outside this repository writes to it.
+#
+# Runs every hour and by hand (Actions > Update casks > Run workflow) - a release shows up within the hour.
+name: Update casks
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-casks
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render casks from the release manifests
+        run: .github/scripts/update-casks.sh "$RUNNER_TEMP/message"
+
+      - name: Commit
+        # Also after a failed cask: the others that changed are still committed
+        if: ${{ !cancelled() }}
+        run: |
+          git add Casks
+          if git diff --cached --quiet; then
+            echo "Nothing new"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "$(cat "$RUNNER_TEMP/message")"
+          git push
